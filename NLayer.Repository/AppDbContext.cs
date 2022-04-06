@@ -23,6 +23,11 @@ namespace NLayer.Repository
         {
             //IEntityTypeConfiguration interface inin uygulandığı tüm sınıflar için gerçekleştirir.
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            //seed dışında appdbcontext içerisinde de data atanabilir. seed içerisinde yapılması daha makbuldur.
+            modelBuilder.Entity<ProductFeature>().HasData(new ProductFeature()
+            {Id = 1, Color = "Kırmızı", Height = 100, Width = 200, ProductId = 1 },
+            new ProductFeature()
+            { Id = 2, Color = "Kırmızı", Height = 100, Width = 200, ProductId = 1 });
             base.OnModelCreating(modelBuilder);
         }
 
